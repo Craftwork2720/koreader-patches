@@ -30,8 +30,6 @@ Prevents selected folders or files from appearing in Reading History or being tr
 - **Statistics** — excluded files are ignored by the Statistics plugin after reopening the book
 - If a file is inside an already-excluded folder, its button in the context menu will be **greyed out** — the exclusion comes from the parent folder and can't be removed directly
 
- > [!TIP]
-> If folder 📁 and file 📄 emoji icons are not displaying correctly, install the [Noto Emoji](https://fonts.google.com/noto/specimen/Noto+Emoji) font and set it as a fallback in your device settings under **Device → Additional UI Fallback Fonts → Noto Emoji**.
 ---
 
 ## [🞂 2-incognito](2-incognito.lua) — Open a book without leaving any trace
