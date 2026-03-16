@@ -17,8 +17,10 @@ local GetText = require("gettext")
 local translations = {
 
 
-    -- === 2-incognito.lua ===
+    -- === 2-incognito.lua / incognito.koplugin ===
     ["Open Incognito"]                           = "Otwórz incognito",
+    ["Incognito"] = "Incognito",
+    ["Opens books in incognito mode — no reading history, no progress saved, no document settings written to disk, no reading statistics recorded."] = "Otwiera książki w trybie incognito — bez historii czytania, bez zapisu postępu, bez ustawień dokumentu i bez rejestrowania statystyk.",
 
     -- === 2-exclude-folders.lua ===
     ["Remove from exclusion list?"]              = "Usunąć z listy wykluczeń?",

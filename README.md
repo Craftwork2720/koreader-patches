@@ -53,8 +53,9 @@ Opens a file in incognito mode — reading progress, history and document settin
 | **Highlights & notes** | Not written to disk |
 | **All document settings** | Nothing is written to disk for the duration of the session |
 
-> [!NOTE]
-> Incognito mode is active only for the duration of that reading session. Once you close the book, the flag is cleared automatically.
+> [!IMPORTANT]
+> #### incognito.koplugin
+> If you prefer incognito as a plugin over a patch, download the latest `incognito.koplugin.zip` from the [Releases](https://github.com/Craftwork2720/incognito.koplugin/releases) page, unzip and copy the `incognito.koplugin` folder to the `plugins/` directory on your device. Both work identically.
 
 ---
 
