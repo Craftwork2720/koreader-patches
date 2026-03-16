@@ -1,12 +1,15 @@
 -- 1-gettext-translate.lua
--- Custom translations for patches and plugins (injected after official .po files load).
+-- Translates only strings wrapped in _("...") calls across patches and plugins.
+-- Injected after official .po files load, so it only fills in missing strings
+-- without overwriting existing official translations.
 --
--- Patch "1-" runs before _.changeLang(), so we hook changeLang and inject
--- our strings right after the official translations are loaded.
+-- HOW TO ADD TRANSLATIONS:
+--   1. Find the string in the source file — it will look like _("Some text") and _([[Some text]])
+--   2. Add a line below:  ["Some text"] = "Your translation",
+--   3. Set LANGUAGE to your language code (e.g. "de", "fr", "es", "pl")
 
 -- ============================================================
 -- CONFIGURATION — set your language code here
--- Examples: "pl" = Polish, "de" = German, "fr" = French, "es" = Spanish
 -- ============================================================
 local LANGUAGE = "pl"
 
@@ -15,6 +18,13 @@ local LANGUAGE = "pl"
 local GetText = require("gettext")
 
 local translations = {
+    
+    -- =========================================================
+    -- ADD YOUR TRANSLATIONS HERE
+    -- Format:  ["Original english text"] = "Translated text",
+    -- =========================================================
+
+    -- Remove the my private translations below and add your own:
 
 
     -- === 2-incognito.lua / incognito.koplugin ===
@@ -320,17 +330,12 @@ local translations = {
     ["About KoInsight"]                                 = "O KoInsight",
     ["KoInsight: Sync stats"]                           = "KoInsight: Synchronizuj statystyki",
 
-    -- =====================================================
-    -- DODAJ TUTAJ NOWE TŁUMACZENIA DLA SWOICH PLUGINÓW:
-    -- =====================================================
-    -- ["Example text"] = "Przykładowy tekst",
-
 }
 
 local function inject()
     for msgid, msgstr in pairs(translations) do
         if not GetText.translation[msgid] then
-            GetText.translation[msgid] = { [0] = msgstr }
+            GetText.translation[msgid] = { [0] = msgstr } -- skips strings already translated by official .mo files
         end
     end
 end
