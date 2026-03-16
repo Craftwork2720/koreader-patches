@@ -58,8 +58,6 @@ Opens a file in incognito mode — reading progress, history and document settin
 
 ---
 
----
-
 ## [🞂 2-filemanager-title-hide](2-filemanager-title-hide.lua)
 
 Removes the large title from the File Manager without leaving empty space behind. The current path subtitle stays visible.
