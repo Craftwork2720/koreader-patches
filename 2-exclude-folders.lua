@@ -1,7 +1,3 @@
--- Exclude folders from History & Statistics
--- Folders can be added dynamically via long-press on a folder in FileManager
--- or managed via Tools > Exclude Folders menu.
-
 local LuaSettings  = require("luasettings")
 local UIManager    = require("ui/uimanager")
 local ConfirmBox   = require("ui/widget/confirmbox")
@@ -34,15 +30,22 @@ local function saveSettings(cfg)
 end
 
 local function normalizePath(path)
-    return (path or ""):gsub("//+", "/")
+    return (path or ""):gsub("//+", "/"):gsub("/$", "")
 end
 
 local function isExcludedBy(filepath, folders)
     if not filepath or filepath == "" then return false end
     local fp = normalizePath(filepath)
     for _, folder in ipairs(folders) do
-        if fp:find(normalizePath(folder), 1, true) then
-            return true
+        local nf = normalizePath(folder)
+        if nf:sub(1, 1) == "/" then
+            if fp == nf or fp:sub(1, #nf + 1) == nf .. "/" then
+                return true
+            end
+        else
+            if fp:find(nf, 1, true) then
+                return true
+            end
         end
     end
     return false
@@ -142,16 +145,44 @@ if ok_dr and DocumentRegistry then
     end
 end
 
-local function showExcludeMenu(title, folder_key, file_key, menu)
+local function showExcludeMenu(active_tab, menu)
+    active_tab = active_tab or "history"
+
+    local TAB = {
+        history    = { label = _("Excluded from History"),    tab = _("History"),    folder_key = "history",    file_key = "history_files"    },
+        statistics = { label = _("Excluded from Statistics"), tab = _("Statistics"), folder_key = "statistics", file_key = "statistics_files" },
+    }
+    local tab_order = { "history", "statistics" }
+
     local function buildItems()
-        local cfg     = loadSettings()
-        local folders = cfg[folder_key]
-        local files   = cfg[file_key]
-        local items   = {}
-        local any     = false
+        local t          = TAB[active_tab]
+        local folder_key = t.folder_key
+        local file_key   = t.file_key
+        local cfg        = loadSettings()
+        local folders    = cfg[folder_key]
+        local files      = cfg[file_key]
+        local items      = {}
+
+        local tab_parts = {}
+        for _, key in ipairs(tab_order) do
+            local marker = (key == active_tab) and "● " or "○ "
+            tab_parts[#tab_parts + 1] = marker .. TAB[key].tab
+        end
+        items[#items + 1] = {
+            text  = table.concat(tab_parts, "     "),
+            callback = function()
+                active_tab = (active_tab == "history") and "statistics" or "history"
+                local new_t = TAB[active_tab]
+                menu:switchItemTable(new_t.label, buildItems())
+            end,
+        }
+        items[#items + 1] = {
+            text     = "",
+            dim      = true,
+            callback = function() end,
+        }
 
         for i, path in ipairs(folders) do
-            any = true
             items[#items + 1] = {
                 text = "▸ " .. path,
                 callback = function()
@@ -162,7 +193,7 @@ local function showExcludeMenu(title, folder_key, file_key, menu)
                             local c = loadSettings()
                             table.remove(c[folder_key], i)
                             saveSettings(c)
-                            menu:switchItemTable(title, buildItems())
+                            menu:switchItemTable(t.label, buildItems())
                         end,
                     })
                 end,
@@ -170,7 +201,6 @@ local function showExcludeMenu(title, folder_key, file_key, menu)
         end
 
         for i, path in ipairs(files) do
-            any = true
             items[#items + 1] = {
                 text = "" .. path,
                 callback = function()
@@ -181,14 +211,14 @@ local function showExcludeMenu(title, folder_key, file_key, menu)
                             local c = loadSettings()
                             table.remove(c[file_key], i)
                             saveSettings(c)
-                            menu:switchItemTable(title, buildItems())
+                            menu:switchItemTable(t.label, buildItems())
                         end,
                     })
                 end,
             }
         end
 
-        if not any then
+        if #folders == 0 and #files == 0 then
             items[#items + 1] = {
                 text     = _("(nothing excluded yet)"),
                 dim      = true,
@@ -221,7 +251,7 @@ local function showExcludeMenu(title, folder_key, file_key, menu)
                                         UIManager:show(InfoMessage:new{ text = _("Already in the list.") })
                                     end
                                 end
-                                menu:switchItemTable(title, buildItems())
+                                menu:switchItemTable(t.label, buildItems())
                             end,
                         },
                     }},
@@ -234,6 +264,7 @@ local function showExcludeMenu(title, folder_key, file_key, menu)
         return items
     end
 
+    local title = TAB[active_tab].label
     if menu then
         menu:switchItemTable(title, buildItems())
     else
@@ -275,10 +306,13 @@ UIManager:scheduleIn(0, function()
             local c = loadSettings()
             if is_excluded then
                 for i, v in ipairs(c[list_key]) do
-                    if v == file then table.remove(c[list_key], i); break end
+                    if normalizePath(v) == normalizePath(file) then
+                        table.remove(c[list_key], i); break
+                    end
                 end
             else
-                addToList(c[list_key], file)
+                local entry = (not is_file and file:sub(-1) ~= "/") and (file .. "/") or file
+                addToList(c[list_key], entry)
             end
             saveSettings(c)
         end
@@ -288,7 +322,6 @@ UIManager:scheduleIn(0, function()
                 text    = in_history and _("✓ Ignored in History") or _("Ignore in History"),
                 enabled = not inh_history,
                 callback = function()
-                    if inh_history then return end
                     local dialog = UIManager:getTopmostVisibleWidget()
                     if dialog then UIManager:close(dialog) end
                     toggleList(hist_key, in_history)
@@ -303,7 +336,6 @@ UIManager:scheduleIn(0, function()
                 text    = in_statistics and _("✓ Ignored in Statistics") or _("Ignore in Statistics"),
                 enabled = not inh_statistics,
                 callback = function()
-                    if inh_statistics then return end
                     local dialog = UIManager:getTopmostVisibleWidget()
                     if dialog then UIManager:close(dialog) end
                     toggleList(stat_key, in_statistics)
@@ -331,21 +363,10 @@ UIManager:scheduleIn(0, function()
         local order = require("ui/elements/filemanager_menu_order")
         table.insert(order.tools, "exclude_folders")
         self_menu.menu_items.exclude_folders = {
-            text = _("Exclude Folders & Files"),
-            sub_item_table = {
-                {
-                    text     = _("Excluded from History"),
-                    callback = function()
-                        showExcludeMenu(_("Excluded from History"), "history", "history_files")
-                    end,
-                },
-                {
-                    text     = _("Excluded from Statistics"),
-                    callback = function()
-                        showExcludeMenu(_("Excluded from Statistics"), "statistics", "statistics_files")
-                    end,
-                },
-            },
+            text     = _("Exclude from History & Statistics"),
+            callback = function()
+                showExcludeMenu("history")
+            end,
         }
         orig_FM_setUpdateItemTable(self_menu)
     end
