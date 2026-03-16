@@ -6,7 +6,8 @@
 -- HOW TO ADD TRANSLATIONS:
 --   1. Find the string in the source file — it will look like _("Some text") and _([[Some text]])
 --   2. Add a line below:  ["Some text"] = "Your translation",
---   3. Set LANGUAGE to your language code (e.g. "de", "fr", "es", "pl")
+--   3. Set LANGUAGE to your language code (e.g. "de", "fr", "es", "pl") etc.
+--   4. Set the same language in KOReader.
 
 -- ============================================================
 -- CONFIGURATION — set your language code here
@@ -24,7 +25,7 @@ local translations = {
     -- Format:  ["Original english text"] = "Translated text",
     -- =========================================================
 
-    -- Remove the my private translations below and add your own:
+    -- 5. Remove the my private translations below and add your own:
 
 
     -- === 2-incognito.lua / incognito.koplugin ===
