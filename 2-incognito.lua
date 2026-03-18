@@ -1,6 +1,5 @@
-local UIManager  = require("ui/uimanager")
-local _          = require("gettext")
-local logger     = require("logger")
+local UIManager = require("ui/uimanager")
+local _         = require("gettext")
 
 local M = {
     _active = false,
@@ -9,12 +8,9 @@ local M = {
 
 local ok_rh, ReadHistory = pcall(require, "readhistory")
 if ok_rh and ReadHistory then
-
     local orig_addItem = ReadHistory.addItem
     ReadHistory.addItem = function(self, file, ts, no_flush)
-        if M._active and file == M._file then
-            return
-        end
+        if M._active and file == M._file then return end
         return orig_addItem(self, file, ts, no_flush)
     end
 
@@ -36,7 +32,6 @@ end
 
 local ok_dr, DocumentRegistry = pcall(require, "document/documentregistry")
 if ok_dr and DocumentRegistry then
-
     local orig_openDocument = DocumentRegistry.openDocument
     DocumentRegistry.openDocument = function(self, file, provider)
         local doc = orig_openDocument(self, file, provider)
@@ -47,64 +42,72 @@ if ok_dr and DocumentRegistry then
     end
 end
 
+local ok_ds, DocSettings = pcall(require, "docsettings")
+if ok_ds and DocSettings then
+    local orig_flush = DocSettings.flush
+    DocSettings.flush = function(self_ds, ...)
+        if M._active then return end
+        return orig_flush(self_ds, ...)
+    end
+end
+
+UIManager:scheduleIn(0, function()
+    local ok_rui, ReaderUI = pcall(require, "apps/reader/readerui")
+    if not ok_rui or not ReaderUI then return end
+
+    local orig_saveSettings = ReaderUI.saveSettings
+    ReaderUI.saveSettings = function(self_rui, ...)
+        if M._active then
+            self_rui:handleEvent(require("ui/event"):new("SaveSettings"))
+            return
+        end
+        return orig_saveSettings(self_rui, ...)
+    end
+
+    local orig_reloadDocument = ReaderUI.reloadDocument
+    if orig_reloadDocument then
+        ReaderUI.reloadDocument = function(self_rui, ...)
+            if M._active then
+                require("ui/widget/notification"):notify(_("Incognito: document reload suppressed"))
+                return
+            end
+            return orig_reloadDocument(self_rui, ...)
+        end
+    end
+
+    local orig_onClose = ReaderUI.onClose
+    ReaderUI.onClose = function(self_rui, ...)
+        if not M._active then
+            return orig_onClose(self_rui, ...)
+        end
+        local closed_file = M._file
+        local ret = orig_onClose(self_rui, ...)
+        M._active = false
+        M._file   = nil
+        local ok_bl, BookList = pcall(require, "ui/widget/booklist")
+        if ok_bl and BookList and BookList.resetBookInfoCache then
+            BookList.resetBookInfoCache(closed_file)
+        end
+        return ret
+    end
+end)
+
 UIManager:scheduleIn(0, function()
     local ok_fm, FileManager = pcall(require, "apps/filemanager/filemanager")
     if not ok_fm or not FileManager then return end
 
     FileManager:addFileDialogButtons("incognito", function(file, is_file)
         if not is_file then return nil end
-
         return {
             {
                 text = _("Open Incognito"),
                 callback = function()
                     M._active = true
                     M._file   = file
-
                     local dialog = UIManager:getTopmostVisibleWidget()
-                    if dialog then
-                        UIManager:close(dialog)
-                    end
-
+                    if dialog then UIManager:close(dialog) end
                     UIManager:scheduleIn(0.1, function()
-                        local ReaderUI = require("apps/reader/readerui")
-
-                        local orig_init = ReaderUI.init
-                        ReaderUI.init = function(self_rui, ...)
-                            ReaderUI.init = orig_init
-                            orig_init(self_rui, ...)
-                            if M._active and self_rui.doc_settings then
-                                local ds = self_rui.doc_settings
-                                local orig_flush = ds.flush
-                                ds.flush = function(self_ds, ...)
-                                    if M._active then return end
-                                    return orig_flush(self_ds, ...)
-                                end
-                            end
-                        end
-
-                        local orig_onClose = ReaderUI.onClose
-                        ReaderUI.onClose = function(self_rui, ...)
-                            ReaderUI.onClose = orig_onClose
-                            local closed_file = M._file
-
-                            local ret = orig_onClose(self_rui, ...)
-
-                            M._active = false
-                            M._file   = nil
-
-
-                            if closed_file then
-                                local ok_bl, BookList = pcall(require, "ui/widget/booklist")
-                                if ok_bl and BookList and BookList.resetBookInfoCache then
-                                    BookList.resetBookInfoCache(closed_file)
-                                end
-                            end
-
-                            return ret
-                        end
-
-                        ReaderUI:showReader(file)
+                        require("apps/reader/readerui"):showReader(file)
                     end)
                 end,
             },
