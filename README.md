@@ -1,12 +1,8 @@
 # KOReader User Patches
 
-Small patches that extend or tweak KOReader.
+## [2-exclude-folders](2-exclude-folders.lua) — Exclude folders and files from History and Statistics
 
----
-
-## [🞂 2-exclude-folders](2-exclude-folders.lua) — Exclude folders & files from History and Statistics
-
-Prevents selected folders or files from appearing in Reading History or being tracked by Reading Statistics. Settings are saved automatically — no manual file editing needed.
+Prevents selected folders or files from appearing in Reading History or being tracked by Reading Statistics. Settings are saved automatically — no manual file editing required.
 
 <img src="screenshots/2-exclude-folders-1.png" width="300"> <img src="screenshots/2-exclude-folders-2.png" width="300">
 
@@ -15,7 +11,7 @@ Prevents selected folders or files from appearing in Reading History or being tr
 | Method | How |
 |--------|-----|
 | **Long-press** a folder or file in File Manager | Buttons appear at the bottom of the context menu |
-| **Tools → Exclude Folders & Files** | Full list view — add folder paths manually, remove existing entries |
+| **Tools → Exclude Folders & Files** | Full list view — add paths manually or remove existing entries |
 | **Tools → Exclude this book…** | Available inside the reader — excludes the currently open book |
 
 ### How matching works
@@ -24,47 +20,43 @@ Prevents selected folders or files from appearing in Reading History or being tr
 - **Files** — exact match: only that specific file is excluded
 - Matching is **case-sensitive**
 
-### Behaviour
+### Behavior
 
 - **History** — excluded entries are removed the next time you open the History view
-- **Statistics** — excluded files are ignored by the Statistics plugin after reopening the book
-- If a file is inside an already-excluded folder, its button in the context menu will be **greyed out** — the exclusion comes from the parent folder and can't be removed directly
+- **Statistics** — excluded files are ignored after the book is reopened
+- If a file is inside an already-excluded folder, its button will be **greyed out** — the exclusion is inherited from the parent folder and cannot be removed directly
 
 ---
 
-## [🞂 2-incognito](2-incognito.lua) — Open a book without leaving any trace
+## [2-incognito](2-incognito.lua) — Open a book without leaving any trace
 
-Opens a file in incognito mode — reading progress, history and document settings are not saved.
+Opens a file in incognito mode — nothing from the session is saved.
 
 <img src="screenshots/2-incognito.png" width="500">
 
-### How to use
+**Long-press** a file in File Manager → **Open Incognito** appears at the bottom of the context menu.
 
-**Long-press** a file in File Manager → **Open Incognito** button appears at the bottom of the context menu.
+When you open a book via **Open Incognito**:
 
-### What is blocked
-
-| What | Behaviour |
-|------|-----------|
-| **Reading History** | The file is never added — not even temporarily |
-| **Reading Statistics** | The file is not tracked for the duration of the session |
-| **Reading progress** | Last page position is not saved |
-| **Bookmarks** | Not written to disk |
-| **Highlights & notes** | Not written to disk |
-| **All document settings** | Nothing is written to disk for the duration of the session |
+- no history
+- no statistics
+- no progress saved
+- no document settings saved or modified
+- no highlights or notes saved or modified
+- no `.sdr` sidecar folders created or modified
 
 > [!TIP]
-> Prefer a plugin? Grab `incognito.koplugin.zip` from [Releases](https://github.com/Craftwork2720/incognito.koplugin/releases), unzip and drop into `plugins/`. Works identically.
+> Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Functionality is identical.
 
 ---
 
-## [🞂 2-filemanager-title-hide](2-filemanager-title-hide.lua)
+## [2-filemanager-title-hide](2-filemanager-title-hide.lua)
 
-Removes the large title from the File Manager without leaving empty space behind. The current path subtitle stays visible.
+Removes the large title from the File Manager without leaving empty space behind. The current path subtitle remains visible.
 
 ---
 
-## [🞂 2-filemanager-subtitle-margin](2-filemanager-subtitle-margin.lua)
+## [2-filemanager-subtitle-margin](2-filemanager-subtitle-margin.lua)
 
 Adds horizontal padding to the file path shown in the File Manager title bar — useful when it overlaps with buttons.
 
@@ -76,25 +68,23 @@ Adds horizontal padding to the file path shown in the File Manager title bar —
 
 ---
 
-## [🞂 1-gettext-translate](1-gettext-translate.lua) — Custom translations for patches & plugins
+## [1-gettext-translate](1-gettext-translate.lua) — Custom translations for patches and plugins
 
-KOReader's built-in translation system only covers the official app — not community patches or plugins. This patch fills that gap by letting you add translations for any string marked with `_("...")` in a patch or plugin.
-
-**How it works:** KOReader loads language files (`.po`) on startup. This patch hooks into that process and injects your custom translations right after — so they're available everywhere, without touching official files.
+Lets you add translations for any string in a community patch or plugin — without modifying any official KOReader files.
 
 **Setup:**
 
 1. Set your language at the top of the file:
+
 ```lua
 local LANGUAGE = "pl"  -- "pl" = Polish, "de" = German, "fr" = French, "es" = Spanish
 ```
-2. Add translations to the `translations` table:
-```lua 
+
+2. Add your translations to the `translations` table:
+
+```lua
 ["My English string"] = "Mój polski string",
 ```
 
 > [!NOTE]
-> This only works for strings explicitly wrapped in `_("...")`. It does **not** auto-translate arbitrary text.
-> Official KOReader translations are never overwritten.
-
----
+> This only works for strings explicitly wrapped in `_("...")`. Official KOReader translations are never overwritten.
