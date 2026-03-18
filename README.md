@@ -46,7 +46,10 @@ When you open a book via **Open Incognito**:
 - no `.sdr` sidecar folders created or modified
 
 > [!TIP]
-> Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Functionality is identical.
+> Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, + have icon when blocking saves <img src="screenshots/cre.incognito.svg" height="45"/> .
+>
+>[![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
+
 
 ---
 
