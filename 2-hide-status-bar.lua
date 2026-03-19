@@ -82,8 +82,10 @@ end
 
 function ReaderFooter:onToggleStatusBarVisibility()
     if self.view.footer_visible == false then
+        G_reader_settings:saveSetting("status_bar_hidden", false)
         self:onShowStatusBar()
     else
+        G_reader_settings:saveSetting("status_bar_hidden", true)
         self:onHideStatusBar()
     end
 end
