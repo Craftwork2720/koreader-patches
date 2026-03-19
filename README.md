@@ -28,6 +28,8 @@ Prevents selected folders or files from appearing in Reading History or being tr
 
 ---
 
+<br>
+
 ## [2-incognito](2-incognito.lua) — Open a book without leaving any trace
 
 Opens a file in incognito mode — nothing from the session is saved.
@@ -45,7 +47,7 @@ When you open a book via **Open Incognito**:
 - no highlights or notes saved or modified
 - no `.sdr` sidecar folders created or modified
 
-> [!TIP]
+
 > Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, + have icon when blocking saves <img src="screenshots/cre.incognito.svg" height="45"/> .
 >
 >[![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
@@ -53,11 +55,17 @@ When you open a book via **Open Incognito**:
 
 ---
 
+<br>
+
 ## [2-filemanager-title-hide](2-filemanager-title-hide.lua)
 
 Removes the large title from the File Manager without leaving empty space behind. The current path subtitle remains visible.
 
 ---
+
+
+<br>
+
 
 ## [2-filemanager-subtitle-margin](2-filemanager-subtitle-margin.lua)
 
@@ -70,6 +78,10 @@ Adds horizontal padding to the file path shown in the File Manager title bar —
 > [2-browser-up-folder.lua](https://github.com/sebdelsol/KOReader.patches/blob/main/2-browser-up-folder.lua)
 
 ---
+
+
+<br>
+
 
 ## [1-gettext-translate](1-gettext-translate.lua) — Custom translations for patches and plugins
 
