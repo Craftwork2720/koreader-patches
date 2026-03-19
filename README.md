@@ -57,26 +57,25 @@ When you open a book via **Open Incognito**:
 
 <br>
 
-## [2-hide-status-bar](2-hide-status-bar.lua) — Hide the status bar in reader (3 actions)
+## [2-hide-status-bar](2-hide-status-bar.lua) — Hide the status bar in reader (actions)
 
-Adds a toggle and dedicated actions to control visibility of the entire status bar (footer + alt status bar for CRE documents).
-
+Adds a toggle to hide the entire status bar (footer + alt status bar for CRE documents).
 
 ### Controls
 
 | Type | Action | Behavior |
 |------|--------|----------|
 | Menu | **Reader menu → Status bar → Hide status bar** | Toggle — persisted, restored on next open |
-| Gesture / Profile | **Hide status bar** | Always hides |
-| Gesture / Profile | **Show status bar** | Always shows |
+| Gesture / Profile | **Hide status bar** | One-way: hide (not persisted) |
+| Gesture / Profile | **Show status bar** | One-way: show (not persisted) |
 | Gesture / Profile | **Toggle status bar visibility** | Toggle — persisted |
-
 
 ### Behavior
 
-- State persists across book sessions — if hidden, it stays hidden on next open
+- State is **persisted across book sessions**
 - For CRE documents (e-ink text rendering), also hides the alt status bar at the top
-- **Hide / Show** actions from gestures and profiles do not save state — useful for per-profile or per-gesture control without affecting the global setting
+- **Hide / Show** actions do **not persist state** — intended for temporary control (gestures, profiles)
+
 
 ---
 
