@@ -29,7 +29,9 @@ local original_addToMainMenu = ReaderFooter.addToMainMenu
 
 ReaderFooter.onReaderReady = function(self, ...)
     original_onReaderReady(self, ...)
-    if G_reader_settings:isTrue("status_bar_hidden") then
+    local Device = require("device")
+    if G_reader_settings:isTrue("status_bar_hidden")
+        or (G_reader_settings:isTrue("status_bar_hide_on_night") and Device.screen.night_mode) then
         self.mode = self.mode_list.off
         self.view.footer_visible = false
         if self.ui.crelistener then
@@ -55,6 +57,18 @@ ReaderFooter.addToMainMenu = function(self, menu_items)
                 G_reader_settings:saveSetting("status_bar_hidden", true)
                 self:onHideStatusBar()
             end
+        end,
+        separator = false,
+    })
+
+    table.insert(menu_items.status_bar.sub_item_table, 2, {
+        text = _("Hide status bar in night mode"),
+        checked_func = function()
+            return G_reader_settings:isTrue("status_bar_hide_on_night")
+        end,
+        keep_menu_open = true,
+        callback = function()
+            G_reader_settings:flipNilOrFalse("status_bar_hide_on_night")
         end,
         separator = true,
     })
@@ -87,5 +101,26 @@ function ReaderFooter:onToggleStatusBarVisibility()
     else
         G_reader_settings:saveSetting("status_bar_hidden", true)
         self:onHideStatusBar()
+    end
+end
+
+function ReaderFooter:onToggleNightMode()
+    if not G_reader_settings:isTrue("status_bar_hide_on_night") then return end
+    if G_reader_settings:isTrue("status_bar_hidden") then return end
+    -- night_mode in settings is still the OLD state when we receive this event
+    if not G_reader_settings:isTrue("night_mode") then
+        self:onHideStatusBar()
+    else
+        self:onShowStatusBar()
+    end
+end
+
+function ReaderFooter:onSetNightMode(night_mode_on)
+    if not G_reader_settings:isTrue("status_bar_hide_on_night") then return end
+    if G_reader_settings:isTrue("status_bar_hidden") then return end
+    if night_mode_on then
+        self:onHideStatusBar()
+    else
+        self:onShowStatusBar()
     end
 end
