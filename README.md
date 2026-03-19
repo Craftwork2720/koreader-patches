@@ -57,6 +57,31 @@ When you open a book via **Open Incognito**:
 
 <br>
 
+## [2-hide-status-bar](2-hide-status-bar.lua) — Hide the status bar in reader (3 actions)
+
+Adds a toggle and dedicated actions to control visibility of the entire status bar (footer + alt status bar for CRE documents).
+
+
+### Controls
+
+| Type | Action | Behavior |
+|------|--------|----------|
+| Menu | **Reader menu → Status bar → Hide status bar** | Toggle — persisted, restored on next open |
+| Gesture / Profile | **Hide status bar** | Always hides |
+| Gesture / Profile | **Show status bar** | Always shows |
+| Gesture / Profile | **Toggle status bar visibility** | Toggle — persisted |
+
+
+### Behavior
+
+- State persists across book sessions — if hidden, it stays hidden on next open
+- For CRE documents (e-ink text rendering), also hides the alt status bar at the top
+- **Hide / Show** actions from gestures and profiles do not save state — useful for per-profile or per-gesture control without affecting the global setting
+
+---
+
+<br>
+
 ## [2-filemanager-title-hide](2-filemanager-title-hide.lua) — Hide "KOReader" title
 
 Removes the large title from the File Manager without leaving empty space behind. The current path subtitle remains visible.
