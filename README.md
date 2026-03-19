@@ -48,7 +48,7 @@ When you open a book via **Open Incognito**:
 - no `.sdr` sidecar folders created or modified
 
 
-> Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, + have icon when blocking saves <img src="screenshots/cre.incognito.svg" height="45"/> .
+>Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, with an icon displayed when saves are blocked. <img src="screenshots/cre.png" height="40" style="vertical-align: middle"/>
 >
 >[![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
 
@@ -57,7 +57,7 @@ When you open a book via **Open Incognito**:
 
 <br>
 
-## [2-filemanager-title-hide](2-filemanager-title-hide.lua)
+## [2-filemanager-title-hide](2-filemanager-title-hide.lua) — Hide "KOReader" title
 
 Removes the large title from the File Manager without leaving empty space behind. The current path subtitle remains visible.
 
@@ -67,7 +67,7 @@ Removes the large title from the File Manager without leaving empty space behind
 <br>
 
 
-## [2-filemanager-subtitle-margin](2-filemanager-subtitle-margin.lua)
+## [2-filemanager-subtitle-margin](2-filemanager-subtitle-margin.lua) — Cosmetic fix
 
 Adds horizontal padding to the file path shown in the File Manager title bar — useful when it overlaps with buttons.
 
