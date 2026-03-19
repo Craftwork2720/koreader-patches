@@ -66,6 +66,7 @@ Adds a toggle to hide the entire status bar (footer + alt status bar for CRE doc
 | Type | Action | Behavior |
 |------|--------|----------|
 | Menu | **Reader menu → Status bar → Hide status bar** | Toggle — persisted, restored on next open |
+| Menu | **Reader menu → Status bar → Hide status bar in night mode** | Auto-hide when night mode is active |
 | Gesture / Profile | **Hide status bar** | One-way: hide (not persisted) |
 | Gesture / Profile | **Show status bar** | One-way: show (not persisted) |
 | Gesture / Profile | **Toggle status bar visibility** | Toggle — persisted |
@@ -75,7 +76,7 @@ Adds a toggle to hide the entire status bar (footer + alt status bar for CRE doc
 - State is **persisted across book sessions**
 - For CRE documents (e-ink text rendering), also hides the alt status bar at the top
 - **Hide / Show** actions do **not persist state** — intended for temporary control (gestures, profiles)
-
+- **Night mode auto-hide** — if the bar was manually hidden, toggling night mode will not affect it
 
 ---
 
