@@ -28,6 +28,8 @@ local translations = {
     -- 5. Remove the my private translations below and add your own:
 
 
+-- ============================================  START  ============================================= --
+
     -- === 2-incognito.lua / incognito.koplugin ===
     ["Open Incognito"]                           = "Otwórz incognito",
     ["Incognito"] = "Incognito",
@@ -59,11 +61,22 @@ local translations = {
     ["Exclude this book…"]                                                                         = "Wyklucz tę książkę…",
     ["Change will take effect after reopening the book."]                                          = "Zmiana zostanie zastosowana po ponownym otwarciu książki.",
 
+    
+    -- === 2-hide-status-bar.lua ===
+    ["Hide status bar"]              = "Ukryj pasek stanu",
+    ["Show status bar"]              = "Pokaż pasek stanu",
+    ["Toggle status bar visibility"] = "Przełącz widoczność paska stanu",
+    ["Hide status bar in night mode"] = "Ukryj pasek stanu w trybie nocnym",
+
+
+-- ============================================  OTHER  ============================================= --
+
     -- === 2-browser-up-folder.lua ===
     ["Hide empty folders"]                          = "Ukryj puste foldery",
     ["Hide up folders"]                             = "Ukryj folder nadrzędny",
 
     -- === 2-automatic-book-series.lua ===
+    ["Group book series into folders"]              = "Grupuj serie w foldery",
     ["Group series"]                                = "Grupuj serie",
     ["Group even if folder has one series"]         = "Grupuj nawet gdy folder ma jedną serię",
 
@@ -330,6 +343,9 @@ local translations = {
     ["Set server URL"]                                  = "Ustaw adres serwera",
     ["About KoInsight"]                                 = "O KoInsight",
     ["KoInsight: Sync stats"]                           = "KoInsight: Synchronizuj statystyki",
+
+
+-- ============================================  END  ============================================= --
 
 }
 
