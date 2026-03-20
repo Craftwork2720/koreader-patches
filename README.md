@@ -57,7 +57,7 @@ When you open a book via **Open Incognito**:
 
 <br>
 
-## [2-hide-status-bar](2-hide-status-bar2.lua) — Hide the status bar in reader (3 actions + NightMode)
+## [2-hide-status-bar](2-hide-status-bar.lua) — Hide the status bar in reader (3 actions + NightMode)
 
 Adds a toggle to hide the entire status bar (footer + alt status bar for CRE documents).
 
