@@ -1,15 +1,4 @@
-# KOReader User Patches — TL;DR
-
-- [**2-exclude-folders**](#2-exclude-folders--exclude-folders-and-files-from-history-and-statistics) — Exclude specific folders or files from Reading History and Statistics.
-- [**2-incognito**](#2-incognito--open-a-book-without-leaving-any-trace) — Open a book without saving anything: no history, no stats, no progress, no highlights.
-- [**2-hide-status-bar**](#2-hide-status-bar--hide-status-bar--3-actions--auto-hide-in-night-mode-) — Hide the status bar in the reader, with an option to auto-hide it in night mode.
-- [**2-filemanager-title-hide**](#2-filemanager-title-hide--hide-koreader-title) — Remove the large "KOReader" title from the File Manager.
-- [**2-filemanager-subtitle-margin**](#2-filemanager-subtitle-margin--cosmetic-fix) — Add padding to the file path in the File Manager title bar.
-- [**1-gettext-translate**](#1-gettext-translate--custom-translations-for-patches-and-plugins) — Add your own translations for patches and plugins.
-
----
-
-<br>
+# KOReader User Patches
 <br>
 
 ## [2-exclude-folders](2-exclude-folders.lua) — Exclude folders and files from History and Statistics
