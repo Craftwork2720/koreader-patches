@@ -96,7 +96,7 @@ UIManager:scheduleIn(0, function()
     local ok_fm, FileManager = pcall(require, "apps/filemanager/filemanager")
     if not ok_fm or not FileManager then return end
 
-    FileManager:addFileDialogButtons("incognito", function(file, is_file)
+    local function row_func(file, is_file)
         if not is_file then return nil end
         return {
             {
@@ -112,7 +112,24 @@ UIManager:scheduleIn(0, function()
                 end,
             },
         }
-    end)
+    end
+
+    FileManager.addFileDialogButtons(FileManager, "incognito", row_func)
+
+    local ok_fmh, FileManagerHistory = pcall(require, "apps/filemanager/filemanagerhistory")
+    if ok_fmh and FileManagerHistory then
+        FileManager.addFileDialogButtons(FileManagerHistory, "incognito", row_func)
+    end
+
+    local ok_fmc, FileManagerCollection = pcall(require, "apps/filemanager/filemanagercollection")
+    if ok_fmc and FileManagerCollection then
+        FileManager.addFileDialogButtons(FileManagerCollection, "incognito", row_func)
+    end
+
+    local ok_fms, FileManagerFileSearcher = pcall(require, "apps/filemanager/filemanagerfilesearcher")
+    if ok_fms and FileManagerFileSearcher then
+        FileManager.addFileDialogButtons(FileManagerFileSearcher, "incognito", row_func)
+    end
 end)
 
 return M
