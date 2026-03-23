@@ -85,6 +85,16 @@ Hides the entire status bar (footer + alt status bar for CRE documents), with au
 
 <br>
 
+## [2-physical-page-count](2-physical-page-count.lua) — Match page numbers to a physical edition
+
+Enter the number of pages in the physical book and KOReader automatically calculates the correct characters-per-page value so the page counter matches the printed edition.
+
+<img src="screenshots/2-physical-page-count.png" width="500">
+
+---
+
+<br>
+
 ## [2-filemanager-title-hide](2-filemanager-title-hide.lua) — Hide "KOReader" title
 
 Removes the large title from the File Manager without leaving empty space behind. The current path subtitle remains visible.
