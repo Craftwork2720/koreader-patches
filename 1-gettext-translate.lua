@@ -61,7 +61,15 @@ local translations = {
     ["Exclude this book…"]                                                                         = "Wyklucz tę książkę…",
     ["Change will take effect after reopening the book."]                                          = "Zmiana zostanie zastosowana po ponownym otwarciu książki.",
 
-    
+    -- === 2-physical-page-count.lua ===
+    ["Physical page count"]                                                                        = "Liczba stron fizycznych",
+    ["Enter the number of pages in the physical book.\nKOReader will calculate characters per page automatically."] = "Podaj liczbę stron fizycznej książki.\nKOReader automatycznie obliczy liczbę znaków na stronę.",
+    ["Cancel"]                                                                                     = "Anuluj",
+    ["Set"]                                                                                        = "Ustaw",
+    ["Clear"]                                                                                      = "Wyczyść",
+    ["Show stable page numbers in margin"]                                                         = "Pokaż stabilne numery stron na marginesie",
+    ["Physical page count…"]                                                                       = "Liczba stron fizycznych…",
+
     -- === 2-hide-status-bar.lua ===
     ["Hide status bar"]              = "Ukryj pasek stanu",
     ["Show status bar"]              = "Pokaż pasek stanu",
@@ -172,7 +180,7 @@ local translations = {
     ["Sleep"]                                      = "Uśpij",
     ["Arrange buttons"]                            = "Ułóż przyciski",
     ["Arrange quick settings buttons"]             = "Ułóż przyciski szybkich ustawień",
-    ["Quick settings"]                             = "Szybkie ustawienia",
+    ["Quick settings"]                             = "Ustawienia szybkiego menu",
     ["Buttons"]                                    = "Przyciski",
     ["Show frontlight slider"]                     = "Pokaż suwak podświetlenia",
     ["Show warmth slider"]                         = "Pokaż suwak ciepła",
@@ -344,6 +352,42 @@ local translations = {
     ["About KoInsight"]                                 = "O KoInsight",
     ["KoInsight: Sync stats"]                           = "KoInsight: Synchronizuj statystyki",
 
+    -- === syncthing.koplugin ===
+    ["Failed to start Syncthing."]                     = "Nie udało się uruchomić Syncthing.",
+    ["Could not retrieve network info."]               = "Nie można pobrać informacji o sieci.",
+    ["Syncthing stopped."]                             = "Syncthing zatrzymany.",
+    ["Choose Syncthing port"]                          = "Wybierz port Syncthing",
+    ["Syncthing error (%1)"]                           = "Błąd Syncthing (%1)",
+    ["Syncthing is not running"]                       = "Syncthing nie jest uruchomiony",
+    ["Folders"]                                        = "Foldery",
+    ["up to date"]                                     = "aktualny",
+    ["Remote Devices"]                                 = "Zdalne urządzenia",
+    ["Connected"]                                      = "Połączono",
+    ["Last seen %1"]                                   = "Ostatnio widziany %1",
+    ["Pending Devices"]                                = "Oczekujące urządzenia",
+    ["No Pending Devices"]                             = "Brak oczekujących urządzeń",
+    ["Add Device\n%1?"]                                = "Dodać urządzenie\n%1?",
+    ["Pending Folders"]                                = "Oczekujące foldery",
+    ["No Pending Folders"]                             = "Brak oczekujących folderów",
+    ["Add Folder %1?"]                                 = "Dodać folder %1?",
+    ["Syncthing"]                                      = "Syncthing",
+    ["Syncthing Port: %1"]                             = "Port Syncthing: %1",
+    ["Syncthing Web GUI"]                              = "Interfejs webowy Syncthing",
+    ["Connect to port %1 for web GUI\nYou must set a password first! Default username: syncthing\n\n%2"] = "Połącz z portem %1 aby otworzyć interfejs webowy\nNajpierw ustaw hasło! Domyślna nazwa użytkownika: syncthing\n\n%2",
+    ["Set GUI Password"]                               = "Ustaw hasło GUI",
+    ["Set"]                                            = "Ustaw",
+    ["Device ID: %1"]                                  = "ID urządzenia: %1",
+    ["Show QR Code"]                                   = "Pokaż kod QR",
+    ["Status"]                                         = "Status",
+    ["Pending"]                                        = "Oczekujące",
+    ["Start Syncthing with KOReader"]                  = "Uruchamiaj Syncthing razem z KOReaderem",
+    ["Toggle Syncthing"]                               = "Przełącz Syncthing",
+    ["N/A"]                                            = "Brak",
+    ["Yes"]                                            = "Tak",
+    ["No"]                                             = "Nie",
+    ["Syncthing started.\n\nSyncthing port: %1\n%2"]  = "Syncthing uruchomiony.\n\nPort Syncthing: %1\n%2",
+    ["Save"]                                           = "Zapisz",
+    ["Add"]                                            = "Dodaj",
 
 -- ============================================  END  ============================================= --
 
