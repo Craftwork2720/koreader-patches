@@ -87,9 +87,11 @@ Hides the entire status bar (footer + alt status bar for CRE documents), with au
 
 ## [2-physical-page-count](2-physical-page-count.lua) — Match page numbers to a physical edition
 
-Enter the number of pages in the physical book and KOReader automatically calculates the correct characters-per-page value so the page counter matches the printed edition.
+Adds a **Physical page count** option. Enter the number of pages in the physical book and KOReader automatically calculates the correct characters-per-page value so the page counter matches the printed edition.
 
 <img src="screenshots/2-physical-page-count.png" width="500">
+
+**In-book top menu → Navigation → Physical page count…**   Opens the input dialog
 
 ---
 
