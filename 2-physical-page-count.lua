@@ -187,3 +187,16 @@ ReaderPageMap.addToMainMenu = function(self, menu_items)
         end,
     }
 end
+
+-- Insert pagemap_physical_pages right after bookmarks in the reader navi menu
+do
+    local reader_order = require("ui/elements/reader_menu_order")
+    local pos = 1
+    for i, id in ipairs(reader_order.navi) do
+        if id == "page_browser" then
+            pos = i + 1
+            break
+        end
+    end
+    table.insert(reader_order.navi, pos, "pagemap_physical_pages")
+end
