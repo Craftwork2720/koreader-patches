@@ -76,6 +76,43 @@ local translations = {
     ["Toggle status bar visibility"] = "Przełącz widoczność paska stanu",
     ["Hide status bar in night mode"] = "Ukryj pasek stanu w trybie nocnym",
 
+    
+    -- === foldermemory.koplugin / foldermemory_menu.lua ===
+    ["Book status: %1"]                                                                             = "Status książki: %1",
+    ["Classic (filename only)"]                                                                     = "Klasyczny (tylko nazwy plików)",
+    ["Mosaic with cover images"]                                                                    = "Mozaika z okładkami",
+    ["Mosaic with text covers"]                                                                     = "Mozaika z okładkami tekstowymi",
+    ["Detailed list with cover images and metadata"]                                                = "Lista szczegółowa z okładkami i metadanymi",
+    ["Detailed list with metadata, no images"]                                                      = "Lista szczegółowa z metadanymi, bez obrazów",
+    ["Detailed list with cover images and filenames"]                                               = "Lista szczegółowa z okładkami i nazwami plików",
+    ["Display mode"]                                                                                = "Tryb wyświetlania",
+    ["Sort by: %1"]                                                                                 = "Sortuj według: %1",
+    ["Reverse sorting"]                                                                             = "Odwrotne sortowanie",
+    ["Folders and files mixed"]                                                                     = "Foldery i pliki zmieszane",
+    ["Items per page in portrait mosaic mode: %1 × %2"]                                             = "Elementy na stronę w pionowym trybie mozaiki: %1 × %2",
+    ["Default portrait mosaic mode"]                                                                = "Domyślny pionowy tryb mozaiki",
+    ["Columns"]                                                                                     = "Kolumny",
+    ["Rows"]                                                                                        = "Wiersze",
+    ["Items per page in landscape mosaic mode: %1 × %2"]                                            = "Elementy na stronę w poziomym trybie mozaiki: %1 × %2",
+    ["Default landscape mosaic mode"]                                                               = "Domyślny poziomy tryb mozaiki",
+    ["Items per page in portrait list mode: %1"]                                                    = "Elementy na stronę w pionowym trybie listy: %1",
+    ["Default portrait list mode"]                                                                  = "Domyślny pionowy tryb listy",
+    ["Portrait mosaic mode"]                                                                        = "Pionowy tryb mozaiki",
+    ["Landscape mosaic mode"]                                                                       = "Poziomy tryb mozaiki",
+    ["Portrait list mode"]                                                                          = "Pionowy tryb listy",
+    ["Clear saved settings for this folder"]                                                        = "Wyczyść zapisane ustawienia tego folderu",
+    ["Clear saved settings for this folder? Settings will revert to default or global values."]     = "Wyczyścić zapisane ustawienia tego folderu? Przywrócone zostaną ustawienia domyślne lub globalne.",
+    ["Clear"]                                                                                       = "Wyczyść",
+    ["Folder settings cleared."]                                                                    = "Ustawienia folderu wyczyszczone.",
+    ["Folder memory"]                                                                               = "Pamięć folderu",
+    ["Configure this folder"]                                                                       = "Konfiguruj ten folder",
+    ["Inherit settings from parent folders"]                                                        = "Dziedzicz ustawienia z folderów nadrzędnych",
+    ["Configure default settings"]                                                                  = "Konfiguruj ustawienia domyślne",
+    ["Clear all saved folder settings"]                                                             = "Wyczyść wszystkie zapisane ustawienia folderów",
+    ["Clear all saved folder settings? Default settings will be kept if they exist."]               = "Wyczyścić wszystkie zapisane ustawienia folderów? Ustawienia domyślne zostaną zachowane, jeśli istnieją.",
+    ["Clear all"]                                                                                   = "Wyczyść wszystko",
+    ["All folder memory cleared."]                                                                  = "Cała pamięć folderów wyczyszczona.",
+
 
 -- ============================================  OTHER  ============================================= --
 
