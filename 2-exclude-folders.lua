@@ -361,7 +361,14 @@ UIManager:scheduleIn(0, function()
     local orig_FM_setUpdateItemTable = FileManagerMenu.setUpdateItemTable
     FileManagerMenu.setUpdateItemTable = function(self_menu)
         local order = require("ui/elements/filemanager_menu_order")
-        table.insert(order.tools, "exclude_folders")
+        local pos = 1
+        for i, id in ipairs(order.tools) do
+            if id == "profiles" then
+                pos = i + 1
+                break
+            end
+        end
+        table.insert(order.tools, pos, "exclude_folders")
         self_menu.menu_items.exclude_folders = {
             text     = _("Exclude from History & Statistics"),
             callback = function()
