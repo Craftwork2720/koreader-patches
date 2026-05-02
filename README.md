@@ -51,7 +51,6 @@ When you open a book via **Open Incognito**:
 
 
 >Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, with an icon displayed when saves are blocked. <picture><img src="screenshots/cre.png" height="40"  align="center" /></picture>
-
 >
 >[![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
 
@@ -145,3 +144,30 @@ local LANGUAGE = "pl"  -- "pl" = Polish, "de" = German, "fr" = French, "es" = Sp
 
 > [!NOTE]
 > This only works for strings explicitly wrapped in `_("...")`. Official KOReader translations are never overwritten.
+
+---
+
+<br>
+
+# KOReader Plugins
+
+<br>
+
+## foldermemory.koplugin
+
+A KOReader plugin that remembers per-folder settings (sort, display mode, grid, book status filter) and restores them automatically.
+
+> [![Download foldermemory.koplugin.zip](https://img.shields.io/badge/Download-foldermemory.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/foldermemory.koplugin/releases/latest/download/foldermemory.koplugin.zip)
+>
+[https://github.com/Craftwork2720/foldermemory.koplugin](https://github.com/Craftwork2720/foldermemory.koplugin)
+
+
+<br>
+
+## incognito.koplugin
+
+Opens a file in incognito mode — nothing from the session is saved.
+
+> [![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
+>
+[https://github.com/Craftwork2720/incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin)
