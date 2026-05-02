@@ -5,7 +5,8 @@
 
 Prevents selected folders or files from appearing in Reading History or being tracked by Reading Statistics. Settings are saved automatically — no manual file editing required.
 
-<img src="screenshots/2-exclude-folders-1.png" width="300"> <img src="screenshots/2-exclude-folders-2.png" width="300">
+<picture><img src="screenshots/2-exclude-folders-1.png" width="300"></picture>
+<picture><img src="screenshots/2-exclude-folders-2.png" width="300"></picture>
 
 ### Adding exclusions
 
@@ -35,7 +36,7 @@ Prevents selected folders or files from appearing in Reading History or being tr
 
 Opens a file in incognito mode — nothing from the session is saved.
 
-<img src="screenshots/2-incognito.png" width="500">
+<picture><img src="screenshots/2-incognito.png" width="500"></picture>
 
 **Long-press** a file in File Manager → **Open Incognito** appears at the bottom of the context menu.
 
@@ -49,7 +50,8 @@ When you open a book via **Open Incognito**:
 - no `.sdr` sidecar folders created or modified
 
 
->Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, with an icon displayed when saves are blocked. <img src="screenshots/cre.png" height="40"  align="center" />
+>Prefer a plugin? Download [incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin). Identical functionality, with an icon displayed when saves are blocked. <picture><img src="screenshots/cre.png" height="40"  align="center" /></picture>
+
 >
 >[![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
 
@@ -62,7 +64,7 @@ When you open a book via **Open Incognito**:
 
 Hides the entire status bar (footer + alt status bar for CRE documents), with auto-hide support in night mode.
 
-<img src="screenshots/2-hide-status-bar2.png" width="500">
+<picture><img src="screenshots/2-hide-status-bar2.png" width="500"></picture>
 
 ### Controls
 
@@ -89,7 +91,7 @@ Hides the entire status bar (footer + alt status bar for CRE documents), with au
 
 Adds a **Physical page count** option. Enter the number of pages in the physical book and KOReader automatically calculates the correct characters-per-page value so the page counter matches the printed edition.
 
-<img src="screenshots/2-physical-page-count.png" width="500">
+<picture><img src="screenshots/2-physical-page-count.png" width="500"></picture>
 
 **In-book top menu → Navigation → Physical page count…**   Opens the input dialog
 
@@ -111,7 +113,7 @@ Removes the large title from the File Manager without leaving empty space behind
 
 Adds horizontal padding to the file path shown in the File Manager title bar — useful when it overlaps with buttons.
 
-<img src="screenshots/title_hide_margin.png" width="500">
+<picture><img src="screenshots/title_hide_margin.png" width="500"></picture>
 
 > [!NOTE]
 > The back arrow button comes from a separate patch by sebdelsol:
