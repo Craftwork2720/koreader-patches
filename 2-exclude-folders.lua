@@ -383,7 +383,14 @@ UIManager:scheduleIn(0, function()
     local orig_RM_setUpdateItemTable = ReaderMenu.setUpdateItemTable
     ReaderMenu.setUpdateItemTable = function(self_menu)
         local order = require("ui/elements/reader_menu_order")
-        table.insert(order.tools, "exclude_current_book")
+        local pos = 1
+        for i, id in ipairs(order.tools) do
+            if id == "profiles" then
+                pos = i + 1
+                break
+            end
+        end
+        table.insert(order.tools, pos, "exclude_current_book")
         self_menu.menu_items.exclude_current_book = {
             text = _("Exclude this book…"),
             sub_item_table = {
