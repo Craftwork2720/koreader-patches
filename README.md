@@ -171,3 +171,14 @@ Opens a file in incognito mode — nothing from the session is saved.
 > [![Download incognito.koplugin.zip](https://img.shields.io/badge/Download-incognito.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/incognito.koplugin/releases/latest/download/incognito.koplugin.zip)
 >
 [https://github.com/Craftwork2720/incognito.koplugin](https://github.com/Craftwork2720/incognito.koplugin)
+
+
+<br>
+
+## pagenumbercrop.koplugin
+
+Automatically detects and removes page numbers from the bottom of manga pages (CBZ) when Page Crop is set to **auto**.
+
+> [![Download pagenumbercrop.koplugin.zip](https://img.shields.io/badge/Download-pagenumbercrop.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/pagenumbercrop.koplugin/releases/latest/download/pagenumbercrop.koplugin.zip)
+>
+[https://github.com/Craftwork2720/pagenumbercrop.koplugin](https://github.com/Craftwork2720/pagenumbercrop.koplugin)
