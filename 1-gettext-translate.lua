@@ -68,7 +68,7 @@ local translations = {
     ["Set"]                                                                                        = "Ustaw",
     ["Clear"]                                                                                      = "Wyczyść",
     ["Show stable page numbers in margin"]                                                         = "Pokaż stabilne numery stron na marginesie",
-    ["Physical page count…"]                                                                       = "Liczba stron fizycznych…",
+    ["Match printed page numbers…"]                                                                = "Dopasuj numerację do książki…",
 
     -- === 2-hide-status-bar.lua ===
     ["Hide status bar"]              = "Ukryj pasek stanu",
@@ -113,7 +113,45 @@ local translations = {
     ["Clear all"]                                                                                   = "Wyczyść wszystko",
     ["All folder memory cleared."]                                                                  = "Cała pamięć folderów wyczyszczona.",
 
+-- === pagenumbercrop.koplugin_meta.lua ===
+    ["Page number crop"]                                                                           = "Przycinanie numeru strony",
+    ["Crops the bottom strip of PDF/DjVu pages, to remove printed page numbers. Optionally skips cropping almost-blank pages."] = "Przycina dolny pasek stron PDF/DjVu, aby usunąć wydrukowane numery stron. Opcjonalnie pomija przycinanie niemal pustych stron.",
 
+    -- === main.lua ===
+    ["Page Number Crop"]                                                                           = "Przycinanie numeru strony",
+    ["No crop on blank pages"]                                                                     = "Bez przycinania pustych stron",
+    ["Page Number Crop: check for updates"]                                                        = "Przycinanie numeru strony: sprawdź aktualizacje",
+    ["Could not find the updater component."]                                                      = "Nie znaleziono komponentu aktualizacji.",
+    ["Page Number Crop: on"]                                                                       = "Przycinanie numeru strony: włączone",
+    ["Page Number Crop: off"]                                                                      = "Przycinanie numeru strony: wyłączone",
+    ["No crop on blank pages: on"]                                                                 = "Bez przycinania pustych stron: włączone",
+    ["No crop on blank pages: off"]                                                                = "Bez przycinania pustych stron: wyłączone",
+    ["Page Number Crop: only available when \"Page Crop\" is \"auto\"."]                           = "Przycinanie numeru strony: dostępne tylko gdy \"Przycinanie strony\" jest ustawione na \"auto\".",
+    ["Cropped the page number on this page."]                                                      = "Przycięto numer strony na tej stronie.",
+    ["No page number found on this page."]                                                         = "Nie znaleziono numeru strony na tej stronie.",
+    ["Crop page number on this page"]                                                              = "Przytnij numer strony na tej stronie",
+    ["Page Number Crop: toggle"]                                                                   = "Przycinanie numeru strony: przełącz",
+    ["No crop on blank pages: toggle"]                                                              = "Bez przycinania pustych stron: przełącz",
+
+    -- === pagenumbercrop_updater.lua ===
+    ["Downloading update %1…"]                                                                     = "Pobieranie aktualizacji %1…",
+    ["Download failed: %1"]                                                                        = "Pobieranie nie powiodło się: %1",
+    ["Could not install update: %1"]                                                               = "Nie udało się zainstalować aktualizacji: %1",
+    ["Page Number Crop was updated to %1.\nRestart KOReader now to use the new version?"]          = "Przycinanie numeru strony zostało zaktualizowane do wersji %1.\nZrestartować KOReader teraz, aby użyć nowej wersji?",
+    ["Restart"]                                                                                     = "Uruchom ponownie",
+    ["Later"]                                                                                       = "Później",
+    ["Update cancelled."]                                                                           = "Anulowano aktualizację.",
+    ["Page Number Crop is up to date (%1)."]                                                       = "Przycinanie numeru strony jest aktualne (%1).",
+    ["A new version of Page Number Crop is available: %1 (you have %2)."]                          = "Dostępna jest nowa wersja Przycinania numeru strony: %1 (masz %2).",
+    ["No downloadable update asset was found; open the release page instead?"]                     = "Nie znaleziono pliku aktualizacji do pobrania; otworzyć zamiast tego stronę wydania?",
+    ["Open in browser"]                                                                             = "Otwórz w przeglądarce",
+    ["Cancel"]                                                                                       = "Anuluj",
+    ["Download and install now?"]                                                                   = "Pobrać i zainstalować teraz?",
+    ["Update"]                                                                                       = "Aktualizuj",
+    ["Checking for updates…"]                                                                        = "Sprawdzanie aktualizacji…",
+    ["Could not check for updates."]                                                                 = "Nie udało się sprawdzić aktualizacji.",
+    ["Could not check for updates: %1"]                                                              = "Nie udało się sprawdzić aktualizacji: %1",
+    ["Update check cancelled."]                                                                      = "Anulowano sprawdzanie aktualizacji.",
 -- ============================================  OTHER  ============================================= --
 
     -- === 2-browser-up-folder.lua ===
