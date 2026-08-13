@@ -1,4 +1,5 @@
 local CheckButton   = require("ui/widget/checkbutton")
+local Dispatcher    = require("dispatcher")
 local Event         = require("ui/event")
 local InputDialog   = require("ui/widget/inputdialog")
 local UIManager     = require("ui/uimanager")
@@ -83,7 +84,7 @@ local function showDialog(pagemap)
     local ui = pagemap.ui
     local dialog
     dialog = InputDialog:new{
-        title       = _("Physical page count"),
+        title       = _("Match printed page numbers"),
         input       = tostring(getPhysicalPages(ui) or ""),
         input_type  = "number",
         description = _("Enter the number of pages in the physical book.\nKOReader will calculate characters per page automatically."),
@@ -94,20 +95,6 @@ local function showDialog(pagemap)
                     id   = "close",
                     callback = function()
                         UIManager:close(dialog)
-                    end,
-                },
-                {
-                    text             = _("Set"),
-                    is_enter_default = true,
-                    callback         = function()
-                        local val = tonumber(dialog:getInputText())
-                        if val and val > 0 then
-                            setPhysicalPages(ui, val)
-                            UIManager:close(dialog)
-                            UIManager:nextTick(function()
-                                rebuildMap(pagemap, val, true)
-                            end)
-                        end
                     end,
                 },
                 {
@@ -123,6 +110,20 @@ local function showDialog(pagemap)
                             pagemap.ui.doc_settings:delSetting("pagemap_chars_per_synthetic_page")
                             UIManager:broadcastEvent(Event:new("UsePageLabelsUpdated"))
                         end)
+                    end,
+                },
+                {
+                    text             = _("Set"),
+                    is_enter_default = true,
+                    callback         = function()
+                        local val = tonumber(dialog:getInputText())
+                        if val and val > 0 then
+                            setPhysicalPages(ui, val)
+                            UIManager:close(dialog)
+                            UIManager:nextTick(function()
+                                rebuildMap(pagemap, val, true)
+                            end)
+                        end
                     end,
                 },
             },
@@ -177,7 +178,7 @@ end
 ReaderPageMap.addToMainMenu = function(self, menu_items)
     orig_addToMainMenu(self, menu_items)
     menu_items.pagemap_physical_pages = {
-        text = _("Physical page count…"),
+        text = _("Match printed page numbers…"),
         sub_text = function()
             local p = getPhysicalPages(self.ui)
             return p and tostring(p) or nil
@@ -199,4 +200,19 @@ do
         end
     end
     table.insert(reader_order.navi, pos, "pagemap_physical_pages")
+end
+
+-- Gesture / profile: open the physical page count dialog (CRE documents only)
+-- rolling = true keeps the action disabled in paging (PDF/DJVU) contexts
+Dispatcher:registerAction("pagemap_physical_pages", {
+    category = "none",
+    event = "PhysicalPageCount",
+    title = _("Match printed page numbers…"),
+    rolling = true,
+})
+
+function ReaderPageMap:onPhysicalPageCount()
+    if self.ui.document.info.has_pages then return false end
+    showDialog(self)
+    return true
 end

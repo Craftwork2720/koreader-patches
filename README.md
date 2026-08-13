@@ -92,7 +92,10 @@ Adds a **Physical page count** option. Enter the number of pages in the physical
 
 <picture><img src="screenshots/2-physical-page-count.png" width="500"></picture>
 
-**In-book top menu → Navigation → Physical page count…**   Opens the input dialog
+| Type | Action | Behavior |
+|------|--------|----------|
+| Menu | **Navigation → Match printed page numbers…** | Opens the input dialog |
+| Gesture / Profile | **Reflowable documents → Match printed page numbers…** | Opens the input dialog — only available in CRE books (epub, fb2, txt…) |
 
 ---
 
