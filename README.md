@@ -185,3 +185,14 @@ Automatically detects and removes page numbers from the bottom of manga pages (C
 > [![Download pagenumbercrop.koplugin.zip](https://img.shields.io/badge/Download-pagenumbercrop.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/pagenumbercrop.koplugin/releases/latest/download/pagenumbercrop.koplugin.zip)
 >
 [https://github.com/Craftwork2720/pagenumbercrop.koplugin](https://github.com/Craftwork2720/pagenumbercrop.koplugin)
+
+
+<br>
+
+## meguru
+
+Manga reader for that also streams manga directly from your server (Kavita, Suwayomi, Komga)
+
+> [![Download meguru.koplugin.zip](https://img.shields.io/badge/Download-meguru.koplugin.zip-blue?style=for-the-badge&logo=github&logoColor=white&labelColor=1f2328)](https://github.com/Craftwork2720/meguru/releases/latest/download/meguru.koplugin.zip)
+>
+[https://github.com/Craftwork2720/meguru](https://github.com/Craftwork2720/meguru)
