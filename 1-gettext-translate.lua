@@ -5,9 +5,13 @@
 --
 -- HOW TO ADD TRANSLATIONS:
 --   1. Find the string in the source file — it will look like _("Some text") and _([[Some text]])
---   2. Add a line below:  ["Some text"] = "Your translation",
---   3. Set LANGUAGE to your language code (e.g. "de", "fr", "es", "pl") etc.
+--   2. Add a line to the table of your language:  ["Some text"] = "Your translation",
+--   3. Set LANGUAGE to your language code (e.g. "de", "fr", "es", "pl", "pt_BR") etc.
 --   4. Set the same language in KOReader.
+--
+-- Every language has its own table near the bottom of this file; a new language
+-- needs both the table and an entry in `catalogs`. Strings that KOReader's own
+-- .po files already translate can be left out of the table.
 
 -- ============================================================
 -- CONFIGURATION — set your language code here
@@ -18,10 +22,11 @@ local LANGUAGE = "pl"
 
 local GetText = require("gettext")
 
-local translations = {
+local pl = {
     
     -- =========================================================
-    -- ADD YOUR TRANSLATIONS HERE
+    -- POLISH — the author's personal entries, kept as an example.
+    -- Add your language as a new table further down this file.
     -- Format:  ["Original english text"] = "Translated text",
     -- =========================================================
 
@@ -33,6 +38,7 @@ local translations = {
     -- === 2-incognito.lua / incognito.koplugin ===
     ["Open Incognito"]                           = "Otwórz incognito",
     ["Incognito"] = "Incognito",
+    ["Incognito: document reload suppressed"] = "Incognito: przeładowanie dokumentu zablokowane",
     ["Opens books in incognito mode — no reading history, no progress saved, no document settings written to disk, no reading statistics recorded."] = "Otwiera książki w trybie incognito — bez historii czytania, bez zapisu postępu, bez ustawień dokumentu i bez rejestrowania statystyk.",
 
     -- === 2-exclude-folders.lua ===
@@ -69,6 +75,7 @@ local translations = {
     ["Clear"]                                                                                      = "Wyczyść",
     ["Show stable page numbers in margin"]                                                         = "Pokaż stabilne numery stron na marginesie",
     ["Match printed page numbers…"]                                                                = "Dopasuj numerację do książki…",
+    ["Match printed page numbers"]                                                                 = "Dopasuj numerację do książki",
 
     -- === 2-hide-status-bar.lua ===
     ["Hide status bar"]              = "Ukryj pasek stanu",
@@ -468,8 +475,59 @@ local translations = {
 
 }
 
+-- ============================================================
+-- Brazilian Portuguese (pt_BR)
+-- Generic labels (Cancel, Add, Remove, Set, Clear, History,
+-- Statistics…) already come from KOReader's own pt_BR .po.
+-- ============================================================
+local pt_BR = {
+
+    -- === 2-incognito.lua / incognito.koplugin ===
+    ["Open Incognito"]                             = "Abrir em modo anônimo",
+    ["Incognito"]                                  = "Anônimo",
+    ["Incognito: document reload suppressed"]      = "Anônimo: recarregamento do documento bloqueado",
+    ["Opens books in incognito mode — no reading history, no progress saved, no document settings written to disk, no reading statistics recorded."] = "Abre livros em modo anônimo — sem histórico de leitura, sem progresso salvo, sem configurações do documento gravadas no disco e sem registro de estatísticas de leitura.",
+
+    -- === 2-exclude-folders.lua ===
+    ["Excluded from History"]                      = "Excluídos do histórico",
+    ["Excluded from Statistics"]                   = "Excluídos das estatísticas",
+    ["Exclude from History & Statistics"]          = "Excluir do histórico e das estatísticas",
+    ["Exclude this book…"]                         = "Excluir este livro…",
+    ["Exclude folder"]                             = "Excluir pasta",
+    ["＋ Add folder path…"]                        = "＋ Adicionar caminho da pasta…",
+    ["Remove from exclusion list?"]                = "Remover da lista de exclusão?",
+    ["(nothing excluded yet)"]                     = "(nada excluído ainda)",
+    ["Already in the list."]                       = "Já está na lista.",
+    ["Any path fragment will match — e.g. 'Comics' excludes all folders and files containing that name."] = "Qualquer trecho do caminho corresponde — por exemplo, 'Quadrinhos' exclui todas as pastas e arquivos que contenham esse nome.",
+    ["/path/to/folder"]                            = "/caminho/para/pasta",
+    ["file"]                                       = "arquivo",
+    ["folder"]                                     = "pasta",
+    ["✓ Ignored in History"]                       = "✓ Ignorado no histórico",
+    ["Ignore in History"]                          = "Ignorar no histórico",
+    ["✓ Ignored in Statistics"]                    = "✓ Ignorado nas estatísticas",
+    ["Ignore in Statistics"]                       = "Ignorar nas estatísticas",
+    [" added to exclusion list. Existing entries will be removed on next History open."] = " agora está na lista de exclusão. Os itens existentes serão removidos na próxima abertura do histórico.",
+    ["Change will take effect after reopening the book."] = "A alteração terá efeito após reabrir o livro.",
+
+    -- === 2-physical-page-count.lua ===
+    ["Match printed page numbers"]                 = "Igualar números de página impressos",
+    ["Match printed page numbers…"]                = "Igualar números de página impressos…",
+    ["Enter the number of pages in the physical book.\nKOReader will calculate characters per page automatically."] = "Digite o número de páginas do livro físico.\nO KOReader calculará os caracteres por página automaticamente.",
+
+    -- === 2-hide-status-bar.lua ===
+    ["Hide status bar"]                            = "Ocultar barra de status",
+    ["Show status bar"]                            = "Mostrar barra de status",
+    ["Toggle status bar visibility"]               = "Alternar visibilidade da barra de status",
+    ["Hide status bar in night mode"]              = "Ocultar barra de status no modo noturno",
+}
+
+local catalogs = {
+    pl    = pl,
+    pt_BR = pt_BR,
+}
+
 local function inject()
-    for msgid, msgstr in pairs(translations) do
+    for msgid, msgstr in pairs(catalogs[LANGUAGE] or {}) do
         if not GetText.translation[msgid] then
             GetText.translation[msgid] = { [0] = msgstr } -- skips strings already translated by official .mo files
         end

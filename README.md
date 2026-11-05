@@ -136,17 +136,19 @@ Lets you add translations for any string in a community patch or plugin — with
 1. Set your language at the top of the file:
 
 ```lua
-local LANGUAGE = "pl"  -- "pl" = Polish, "de" = German, "fr" = French, "es" = Spanish
+local LANGUAGE = "pt_BR"  -- "pl" = Polish, "pt_BR" = Brazilian Portuguese, "de" = German, "fr" = French, "es" = Spanish
 ```
 
-2. Add your translations to the `translations` table:
+2. Add your translations to the table for that language. Polish and Brazilian Portuguese ship with the file; for any other language, copy a table and register it in `catalogs`:
 
 ```lua
-["My English string"] = "Mój polski string",
+pt_BR = {
+    ["My English string"] = "Minha string em português",
+},
 ```
 
 > [!NOTE]
-> This only works for strings explicitly wrapped in `_("...")`. Official KOReader translations are never overwritten.
+> This only works for strings explicitly wrapped in `_("...")`. Official KOReader translations are never overwritten, so strings KOReader already translates itself can be left out of the table.
 
 ---
 
