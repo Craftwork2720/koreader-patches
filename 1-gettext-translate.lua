@@ -70,6 +70,7 @@ local pl = {
     -- === 2-physical-page-count.lua ===
     ["Physical page count"]                                                                        = "Liczba stron fizycznych",
     ["Enter the number of pages in the physical book.\nKOReader will calculate characters per page automatically."] = "Podaj liczbę stron fizycznej książki.\nKOReader automatycznie obliczy liczbę znaków na stronę.",
+    ["Calculating page numbers…\nThis may take a moment, please wait."]                             = "Obliczanie numerów stron…\nTo może chwilę potrwać, proszę czekać.",
     ["Cancel"]                                                                                     = "Anuluj",
     ["Set"]                                                                                        = "Ustaw",
     ["Clear"]                                                                                      = "Wyczyść",
@@ -513,6 +514,7 @@ local pt_BR = {
     ["Match printed page numbers"]                 = "Igualar números de página impressos",
     ["Match printed page numbers…"]                = "Igualar números de página impressos…",
     ["Enter the number of pages in the physical book.\nKOReader will calculate characters per page automatically."] = "Digite o número de páginas do livro físico.\nO KOReader calculará os caracteres por página automaticamente.",
+    ["Calculating page numbers…\nThis may take a moment, please wait."] = "Calculando números de página…\nIsso pode demorar um pouco, aguarde.",
 
     -- === 2-hide-status-bar.lua ===
     ["Hide status bar"]                            = "Ocultar barra de status",

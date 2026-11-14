@@ -1,6 +1,7 @@
 local CheckButton   = require("ui/widget/checkbutton")
 local Dispatcher    = require("dispatcher")
 local Event         = require("ui/event")
+local InfoMessage   = require("ui/widget/infomessage")
 local InputDialog   = require("ui/widget/inputdialog")
 local UIManager     = require("ui/uimanager")
 local ReaderPageMap = require("apps/reader/modules/readerpagemap")
@@ -27,6 +28,22 @@ local function rebuildMap(self, physical_pages, update_ui)
         return
     end
 
+    -- Building the synthetic pagemap blocks the whole UI while crengine scans
+    -- the document, which is easily mistaken for a frozen device. Show a
+    -- "please wait" window before the first (potentially slow) pass.
+    local busy
+    local function buildSynthetic(chars_per_page)
+        if not busy then
+            busy = InfoMessage:new{
+                text = _("Calculating page numbers…\nThis may take a moment, please wait."),
+                dismissable = false,
+            }
+            UIManager:show(busy)
+            UIManager:forceRePaint()
+        end
+        self.ui.document:buildSyntheticPageMap(chars_per_page)
+    end
+
     local cpp, result_pages
     if self.ui.document:hasPageMap() then
         cpp = self.ui.document:getSyntheticPageMapCharsPerPage()
@@ -34,7 +51,7 @@ local function rebuildMap(self, physical_pages, update_ui)
         result_pages = #self.ui.document:getPageMap()
     else
         cpp = DEFAULT_CPP
-        self.ui.document:buildSyntheticPageMap(cpp)
+        buildSynthetic(cpp)
         result_pages = #self.ui.document:getPageMap()
     end
 
@@ -48,7 +65,7 @@ local function rebuildMap(self, physical_pages, update_ui)
         if new_cpp == cpp or seen_cpp[new_cpp] then break end
         seen_cpp[new_cpp] = true
         cpp = new_cpp
-        self.ui.document:buildSyntheticPageMap(cpp)
+        buildSynthetic(cpp)
         result_pages = #self.ui.document:getPageMap()
         local diff = math.abs(result_pages - physical_pages)
         if diff < best_diff then
@@ -58,7 +75,12 @@ local function rebuildMap(self, physical_pages, update_ui)
     end
     cpp = best_cpp
     if self.ui.document:getSyntheticPageMapCharsPerPage() ~= cpp then
-        self.ui.document:buildSyntheticPageMap(cpp)
+        buildSynthetic(cpp)
+    end
+
+    if busy then
+        UIManager:close(busy)
+        busy = nil
     end
 
     if not self.has_pagemap then
