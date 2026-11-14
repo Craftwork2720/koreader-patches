@@ -21,7 +21,7 @@ local function setPhysicalPages(ui, pages)
     end
 end
 
-local function rebuildMap(self, physical_pages, update_ui)
+local function rebuildMap(self, physical_pages)
     if not physical_pages or physical_pages <= 0 then
         self.ui.doc_settings:delSetting("pagemap_chars_per_synthetic_page")
         self.chars_per_synthetic_page = nil
@@ -95,11 +95,9 @@ local function rebuildMap(self, physical_pages, update_ui)
     self.ui.doc_settings:saveSetting("pagemap_chars_per_synthetic_page", cpp)
     self.ui.doc_settings:saveSetting("pagemap_doc_pages", select(3, self:getCurrentPageLabel()))
 
-    if update_ui then
-        self:updateVisibleLabels()
-        UIManager:setDirty(self.view.dialog, "partial")
-        UIManager:broadcastEvent(Event:new("UsePageLabelsUpdated"))
-    end
+    self:updateVisibleLabels()
+    UIManager:setDirty(self.view.dialog, "partial")
+    UIManager:broadcastEvent(Event:new("UsePageLabelsUpdated"))
 end
 
 local function showDialog(pagemap)
@@ -143,7 +141,7 @@ local function showDialog(pagemap)
                             setPhysicalPages(ui, val)
                             UIManager:close(dialog)
                             UIManager:nextTick(function()
-                                rebuildMap(pagemap, val, true)
+                                rebuildMap(pagemap, val)
                             end)
                         end
                     end,
@@ -168,24 +166,13 @@ local function showDialog(pagemap)
     dialog:onShowKeyboard()
 end
 
-local orig_postInit      = ReaderPageMap._postInit
 local orig_init          = ReaderPageMap.init
-local orig_onReaderReady = ReaderPageMap.onReaderReady
 local orig_addToMainMenu = ReaderPageMap.addToMainMenu
 
-ReaderPageMap._postInit = function(self)
-    self._physical_pages_applied = false
-    orig_postInit(self)
-end
-
-ReaderPageMap.onReaderReady = function(self)
-    if orig_onReaderReady then orig_onReaderReady(self) end
-    if not self._physical_pages_applied then
-        self._physical_pages_applied = true
-        local p = getPhysicalPages(self.ui)
-        if p then rebuildMap(self, p, false) end
-    end
-end
+-- The chosen chars-per-page value is stored in doc settings, and
+-- ReaderPageMap:_postInit already reapplies it when the book is opened.
+-- Rebuilding here would repeat the whole (slow) search on every open and
+-- still end up with the same value, so the calculation only runs on Set.
 
 ReaderPageMap.init = function(self)
     self._last_page_number = nil
